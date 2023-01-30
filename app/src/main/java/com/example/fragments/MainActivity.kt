@@ -11,15 +11,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val frgListado = supportFragmentManager.findFragmentById(R.id.frgListado) as FragmentListado
         frgListado.setCorreosListener {
-            frgListado.setCorreosListener {
-                val frgDetalle: Fragment? = supportFragmentManager.findFragmentById(R.id.frgDetalle)
-                if (frgDetalle != null)
-                    (frgDetalle as FragmentDetalle).mostrarDetall(it.texto)
-                else {
-                    val i = Intent(this, DetalleActivity::class.java)
-                    i.putExtra(DetalleActivity.EXTRA_TEXTO, it.texto)
-                    startActivity(i)
-                }
+            val frgDetalle: Fragment? = supportFragmentManager.findFragmentById(R.id.frgDetalle)
+            if (frgDetalle != null)
+                (frgDetalle as FragmentDetalle).mostrarDetalle(it.texto)
+            else {
+                val i = Intent(this, DetalleActivity::class.java)
+                i.putExtra(DetalleActivity.EXTRA_TEXTO, it.texto)
+                startActivity(i)
             }
         }
     }
